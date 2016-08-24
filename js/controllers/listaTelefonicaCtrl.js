@@ -38,7 +38,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($s
         // $scope.contatos.push({nome: nome, telefone: telefone});
         // Maneira interessante de se passar o parâmetro
         // $scope.contatos.push(angular.copy(contato));
-        $http.post("http://localhost:3412/contatos", contato).success(function (data) {
+        contatosAPI.saveContatos(contato).success(function (data) {
 			delete $scope.contato;
         	$scope.contatoForm.$setPristine(); //Seta o formulario para pristine depois de apagado
         	carregarContatos(); //chama o método de get para atualizar a tela

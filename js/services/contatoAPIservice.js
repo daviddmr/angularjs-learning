@@ -6,7 +6,12 @@ angular.module("listaTelefonica").factory("contatosAPI", function ($http) {
     return $http.get("http://localhost:3412/contatos")
   };
 
+  var _saveContatos = function (contato) {
+    return $http.post("http://localhost:3412/contatos", contato);
+  };
+
   return{
-    getContatos: _getContatos
+    getContatos: _getContatos,
+    saveContatos: _saveContatos
   };
 });
