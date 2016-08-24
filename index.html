@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app = "listaTelefonica">
+    <head>
+        <meta charset="UTF-8">
+        <title>Lista Telefônica</title>
+        <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css"> 
+        <link rel="stylesheet" type="text/css" href="css/app.css"> 
+        <script src="lib/angular/angular.js"></script>
+        <script src="lib/angular/angular-locale_pt-br.js"></script> <!--Se remover automaticamente interpretará como en-usa-->
+        <script src="lib/angular/angular-messages.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers/listaTelefonicaCtrl.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body ng-controller = "listaTelefonicaCtrl">
+        <div class="jumbotron">
+            <!-- <h4 ng-bind="app"></h4> ou chama assim ou com o {{ elemento do scope }}-->
+            <h3>{{app}}</h3>
+            <!-- Devemos aplicar um ng-model sempre que houver uma abstração -->
+            <input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando ?">
+            <table class="table"> <!-- table-striped para zebrado -->
+                <tr>
+                    <th></th>
+                    <th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
+                    <th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
+                    <th>Data</th>
+                    <th>Operadora</th>
+                    <th></th>
+                </tr>
+                <!-- <tr ng-class="{selecionado: contato.selecionado, negrito: contato.selecionado}" ng-repeat = "contato in contatos"> -->
+                <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat = "contato in contatos | filter: {nome: criterioDeBusca} | orderBy: criterioDeOrdenacao: direcaoDaOrdenacao">
+                    <!-- <td ng-repeat="(key,value) in contato">
+                        {{value}}
+                    </td> ou -->
+                    <td><input type="checkbox" ng-model="contato.selecionado"/></td>
+                    <td>{{contato.nome | uppercase}}</td>
+                    <td>{{contato.telefone}}</td>
+                    <td>{{contato.data | date: 'dd/MM/yyyy HH:mm'}}</td>
+                    <td>{{contato.operadora.nome | lowercase}}</td>
+                    <td><div style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></div></td>
+                </tr>
+            </table>
+            <hr/>
+            <form name="contatoForm">
+                <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" name="nome" ng-required="true" ng-minlength="10" />
+                <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" name="telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"/>
+                <!-- {{nome}}
+                {{telefone}} -->
+                <!-- Sem um ng-model, não faz sentido usar um ng-option -->
+                <!-- Caso esteja criando um ng model que reflita uma abstração, use o . para criar dinamicamente o objeto -->
+                <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome + ' ( ' + (operadora.preco | currency) + ' ) ' for operadora in operadoras | orderBy: 'nome'"> <!--primeira forma-->
+                <!--<select class="form-control" ng-model="contato.operadora" ng-options="operadora.codigo as operadora.nome for operadora in operadoras"> <!--segunda forma, pega o codigo ao inves do nome-->
+                <!--<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras | orderBy: 'categoria' && 'nome'"> <!--terceira forma-->
+                    <option value="">Selecione uma operadora</option>
+                </select>
+            </form>
+            <div ng-show="contatoForm.nome.$dirty" ng-messages="contatoForm.nome.$error">
+            	<!-- <div class="alert alert-danger" ng-show="required && contatoForm.nome.$dirty"> -->
+            	<div class="alert alert-danger" ng-message="required">
+	                Por favor, preencha o campo nome!
+	            </div>
+	            <!-- <div class="alert alert-danger" ng-show="contatoForm.nome.$error.minlength"> -->
+	            <div class="alert alert-danger" ng-message="minlength">
+	                O campo nome deve ter no mínimo 10 caracteres!
+	            </div>	
+            </div>
+            
+            <div class="alert alert-danger" ng-show="contatoForm.telefone.$error.required && contatoForm.telefone.$dirty">
+                Por favor, preencha o campo telefone!
+            </div>
+            <div class="alert alert-danger" ng-show="contatoForm.telefone.$error.pattern">
+                O campo de tefone deve conter o formato ddddd-dddd!
+            </div>
+
+            <button class="btn btn-primary btn-block" 
+                    ng-click="adicionarContato(contato)" 
+                    ng-disabled="contatoForm.$invalid"
+                    >
+                    <!-- Foi removido o ng-disable pois foi implementado o ng-required nos campos obrigatórios -->
+                    <!-- ng-disabled="!contato.nome || !contato.telefone" -->
+                    Adicionar Contato</button>
+
+            <button class="btn btn-danger btn-block" 
+                    ng-click="apagarContatos(contatos)"
+                    ng-show="isContatoSelecionado(contatos)">
+                    Apagar Contatos</button>
+                    <!-- ng-disabled="!isContatoSelecionado(contatos)">  Se não há um contato selecionado, desabilitar -->
+        </div>
+        <div style="text-align: center">
+            Criado por David Melo
+        </div>
+    </body>
+</html>
