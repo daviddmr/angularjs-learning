@@ -1,5 +1,5 @@
 //Definindo o controller
-angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, $http){
+angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, $http, contatosAPI){
     $scope.app = "Lista Telefonica";
     /*$scope.contatos = [
         {nome: "Pedro", telefone: "9999-9999", data: new Date(), operadora: {nome: "Oi", codigo: 14, categoria: "Celular"} ,cor: "blue"},
@@ -16,18 +16,18 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($s
     $scope.contatos = [];
     $scope.operadoras = [];
     var carregarContatos = function () {
-    	$http.get("http://localhost:3412/contatos").success(function (data, status) {
+    	contatosAPI.getContatos().success(function (data, status) {
     		console.log(data);
     		$scope.contatos = data;
     	});
-    }
+    };
 
     var carregarOperadoras = function () {
     	$http.get("http://localhost:3412/operadoras").success(function (data, status) {
     		console.log(data);
     		$scope.operadoras = data;
     	});
-    }
+    };
 
     $scope.adicionarContato = function(contato) {
         // Maneira ruim de passar parâmetro, pois quebra um mantra:
