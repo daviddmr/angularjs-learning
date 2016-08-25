@@ -25,6 +25,7 @@
         <div class="jumbotron">
             <!-- <h4 ng-bind="app"></h4> ou chama assim ou com o {{ elemento do scope }}-->
             <h3>{{app}}</h3>
+            {{error}}
             <!-- Devemos aplicar um ng-model sempre que houver uma abstração -->
             <input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando ?">
             <table class="table"> <!-- table-striped para zebrado -->

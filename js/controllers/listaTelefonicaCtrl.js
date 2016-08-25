@@ -19,7 +19,9 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($s
     	contatosAPI.getContatos().success(function (data, status) {
     		console.log(data);
     		$scope.contatos = data;
-    	});
+    	}).error(function (data, status) {
+        $scope.error = "Não foi possível carregar os dados!";
+      });
     };
 
     var carregarOperadoras = function () {
