@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <title>Lista Telefônica</title>
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css"> 
-        <link rel="stylesheet" type="text/css" href="css/app.css"> 
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/ui.css">
         <script src="lib/angular/angular.js"></script>
         <script src="lib/angular/angular-locale_pt-br.js"></script> <!--Se remover automaticamente interpretará como en-usa-->
         <script src="lib/angular/angular-messages.js"></script>
@@ -17,6 +18,7 @@
         <script src="js/filters/nameFilter.js"></script>
         <script src="js/filters/ellipsisFilter.js"></script>
         <script src="js/values/constants.js"></script>
+        <script src="js/directives/uiAlertDirective.js"></script>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -25,7 +27,9 @@
         <div class="jumbotron">
             <!-- <h4 ng-bind="app"></h4> ou chama assim ou com o {{ elemento do scope }}-->
             <h3>{{app}}</h3>
-            {{error}}
+
+            <ui-alert title="titulo" message="error"></ui-alert>
+
             <!-- Devemos aplicar um ng-model sempre que houver uma abstração -->
             <input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando ?">
             <table class="table"> <!-- table-striped para zebrado -->
