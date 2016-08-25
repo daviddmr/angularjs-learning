@@ -29,8 +29,6 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($s
     	});
     };
 
-    console.log(serialGenerator.generate());
-
     $scope.adicionarContato = function(contato) {
         // Maneira ruim de passar parâmetro, pois quebra um mantra:
         // Devemos evitar ao máximo ler o scope estando dentro do controller

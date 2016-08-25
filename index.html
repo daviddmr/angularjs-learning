@@ -14,7 +14,8 @@
         <script src="js/services/operadorasAPIservice.js"></script>
         <script src="js/services/serialGeneratorService.js"></script>
         <script src="js/config/serialGeneratorConfig.js"></script>
-        <script src="js/filters/nameFilters.js"></script>
+        <script src="js/filters/nameFilter.js"></script>
+        <script src="js/filters/ellipsisFilter.js"></script>
         <script src="js/values/constants.js"></script>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -43,7 +44,7 @@
                     </td> ou -->
                     <td><input type="checkbox" ng-model="contato.selecionado"/></td>
                     <td>{{contato.serial}}</td>
-                    <td>{{contato.nome | nameFilter}}</td>
+                    <td>{{contato.nome | name | ellipsis: 10}}</td>
                     <td>{{contato.telefone}}</td>
                     <td>{{contato.data | date: 'dd/MM/yyyy HH:mm'}}</td>
                     <td>{{contato.operadora.nome | lowercase}}</td>

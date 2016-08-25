@@ -1,7 +1,7 @@
 /**
  * Created by davidmelo on 8/25/16.
  */
-angular.module("listaTelefonica").filter("nameFilter", function () {
+angular.module("listaTelefonica").filter("name", function () {
   return function (input) {
     //Separa os nomes em substrings usando o " " como parâmetro de separação
     var listaDeNomes = input.split(" ");
