@@ -12,6 +12,7 @@
         <script src="js/controllers/listaTelefonicaCtrl.js"></script>
         <script src="js/services/contatosAPIservice.js"></script>
         <script src="js/services/operadorasAPIservice.js"></script>
+        <script src="js/services/serialGeneratorService.js"></script>
         <script src="js/values/constants.js"></script>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -26,6 +27,7 @@
             <table class="table"> <!-- table-striped para zebrado -->
                 <tr>
                     <th></th>
+                    <th>Serial</th>
                     <th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
                     <th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
                     <th>Data</th>
@@ -38,6 +40,7 @@
                         {{value}}
                     </td> ou -->
                     <td><input type="checkbox" ng-model="contato.selecionado"/></td>
+                    <td>{{contato.serial}}</td>
                     <td>{{contato.nome | uppercase}}</td>
                     <td>{{contato.telefone}}</td>
                     <td>{{contato.data | date: 'dd/MM/yyyy HH:mm'}}</td>

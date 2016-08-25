@@ -1,5 +1,5 @@
 //Definindo o controller
-angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, $http, contatosAPI, operadorasAPI){
+angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, $http, contatosAPI, operadorasAPI, serialGenerator){
     $scope.app = "Lista Telefonica";
     /*$scope.contatos = [
         {nome: "Pedro", telefone: "9999-9999", data: new Date(), operadora: {nome: "Oi", codigo: 14, categoria: "Celular"} ,cor: "blue"},
@@ -38,6 +38,8 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($s
         // $scope.contatos.push({nome: nome, telefone: telefone});
         // Maneira interessante de se passar o parâmetro
         // $scope.contatos.push(angular.copy(contato));
+        contato.serial = serialGenerator.generate();
+        contato.data = new Date();
         contatosAPI.saveContatos(contato).success(function (data) {
 			delete $scope.contato;
         	$scope.contatoForm.$setPristine(); //Seta o formulario para pristine depois de apagado
