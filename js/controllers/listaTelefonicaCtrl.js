@@ -1,5 +1,5 @@
 //Definindo o controller
-angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, $http, contatosAPI){
+angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, $http, contatosAPI, operadorasAPI){
     $scope.app = "Lista Telefonica";
     /*$scope.contatos = [
         {nome: "Pedro", telefone: "9999-9999", data: new Date(), operadora: {nome: "Oi", codigo: 14, categoria: "Celular"} ,cor: "blue"},
@@ -23,7 +23,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($s
     };
 
     var carregarOperadoras = function () {
-    	$http.get("http://localhost:3412/operadoras").success(function (data, status) {
+    	operadorasAPI.getOperadoras().success(function (data, status) {
     		console.log(data);
     		$scope.operadoras = data;
     	});
