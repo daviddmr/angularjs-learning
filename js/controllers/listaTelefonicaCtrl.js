@@ -15,6 +15,11 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($s
     ];*/
     $scope.contatos = [];
     $scope.operadoras = [];
+    $scope.contato = {
+      date: 1034218800000
+    };
+
+    console.log($scope.contato.date);
     var carregarContatos = function () {
     	contatosAPI.getContatos().success(function (data, status) {
     		console.log(data);
