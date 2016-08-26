@@ -19,6 +19,7 @@
         <script src="js/filters/ellipsisFilter.js"></script>
         <script src="js/values/constants.js"></script>
         <script src="js/directives/uiAlertDirective.js"></script>
+        <script src="js/directives/uiDateDirective.js"></script>
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -62,6 +63,7 @@
             <form name="contatoForm">
                 <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" name="nome" ng-required="true" ng-minlength="10" />
                 <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" name="telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"/>
+                <input class="form-control" type="text" ng-model="contat.data" name="data" placeholder="Data" ui-date/>
                 <!-- {{nome}}
                 {{telefone}} -->
                 <!-- Sem um ng-model, não faz sentido usar um ng-option -->
