@@ -34,6 +34,7 @@ angular.module("listaTelefonica").directive("uiDate", function ($filter) {
 
       //Usa um filtro já nativo do angular, o date e converte o valor de milissegundos em formato padrão de data
       ctrl.$formatters.push(function (value) {
+        //TODO transformação não está funcionando, value está undefined
         return $filter("date")(value, "dd/MM/yyyy");
       });
     }
